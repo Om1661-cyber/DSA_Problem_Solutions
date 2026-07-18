@@ -9,12 +9,6 @@ public:
             }
         }
         return {};
-    //     for(int i=0;i<nums.size();i++){
-    //         if(nums[i]+nums[i+1]==target){
-    //             return {i,i+1};
-    //         }
-    //     }
-    //     return {};
-    // }
+
     }
 };
