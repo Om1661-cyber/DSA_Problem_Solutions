@@ -1,0 +1,58 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+
+    public ListNode reverse(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+
+        while (curr != null) {
+            ListNode next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        return prev;
+    }
+
+    public ListNode doubleIt(ListNode head) {
+
+        // Reverse the linked list
+        ListNode newHead = reverse(head);
+
+        ListNode temp = newHead;
+        int carry = 0;
+
+        // Double every digit
+        while (temp != null) {
+
+            int sum = temp.val * 2 + carry;
+
+            temp.val = sum % 10;
+            carry = sum / 10;
+
+            temp = temp.next;
+        }
+
+        // Reverse back
+        ListNode result = reverse(newHead);
+
+        // If carry remains, add it at beginning
+        if (carry != 0) {
+            ListNode node = new ListNode(carry);
+            node.next = result;
+            result = node;
+        }
+
+        return result;
+    }
+}
